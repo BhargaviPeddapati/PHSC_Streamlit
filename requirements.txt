@@ -1,0 +1,13 @@
+streamlit
+seaborn
+pandas
+numpy
+matplotlib
+statsmodels
+sklearn
+pmdarima
+prophet
+joblib
+scikit-learn==0.24.2
+plotly
+joblib
