@@ -9,24 +9,24 @@ st.set_option('deprecation.showPyplotGlobalUse', False)
 
 
 # Configure the page
-st.set_page_config(page_title="Punjab Health Systems Corporation - Government of Punjab", page_icon="https://raw.githubusercontent.com/Bhargavi-6/PPDC/main/PC_LOGO.JPG", layout="wide")
+st.set_page_config(page_title="Punjab Health Systems Corporation - Government of Punjab", page_icon="https://raw.githubusercontent.com/BhargaviPeddapati/PHSC_Streamlit/main/images/PC_LOGO.JPG", layout="wide")
 
 logo = st.container()
 
 with logo:
    
    col1, col2,col3,col4,col5 = st.columns([1,1,5,1,1])
-   col2.image("https://raw.githubusercontent.com/Bhargavi-6/PPDC/main/PC_LOGO.JPG",  width=100)
+   col2.image("https://raw.githubusercontent.com/BhargaviPeddapati/PHSC_Streamlit/main/images/PC_LOGO.JPG",  width=100)
    with col3:
      st.header('Punjab Health Systems Corporation - Government of Punjab')
      st.subheader('Demand forecasting of drugs and consumables')
-   col4.image("https://raw.githubusercontent.com/Bhargavi-6/PPDC/381236f9b49e768adc4eac329fb313eb504a3ba7/ISB%20Logo.jpg",  width=100)
+   col4.image("https://raw.githubusercontent.com/BhargaviPeddapati/PHSC_Streamlit/main/images/ISB%20Logo.jpg",  width=100)
    st.markdown("""------""")
    
 
 def load_data():
     
-    data = pd.read_csv('C:/Users/ADMIN/Desktop/data science/ISB/PHSC/AAC/DWH_df_with_AAC_details.csv')
+    data = pd.read_csv('https://raw.githubusercontent.com/BhargaviPeddapati/PHSC_Streamlit/main/datasets/DWH_df_with_AAC_details.csv')
     
     # Apply the filter where AAC Phase is Phase I
     data = data[data['AAC Phase'] == 'Phase I']
@@ -42,7 +42,6 @@ def load_data():
     data = data[~((data['Date'].dt.month == 9) & (data['Date'].dt.year == 2023))]   
     
     data = data[~((data['Date'].dt.month == 8) & (data['Date'].dt.year == 2022))] 
-    
     
     # Format the 'Date' column as yyyy-mm-dd
     data['Date'] = data['Date'].dt.strftime('%Y-%m-%d')
@@ -96,8 +95,7 @@ def data_weekly_division_type(filtered_table):
     # Display the pie chart in Streamlit
     st.pyplot(fig)
 
-def data_monthly_division_type(filtered_table):
-        
+def data_monthly_division_type(filtered_table):       
     
     # Create two columns for the two rows
     col1, col2 = st.columns(2)     
@@ -140,8 +138,6 @@ def data_monthly_division_type(filtered_table):
             plt.tight_layout()
             st.pyplot()
             
-        
-        
     with col1:  
         st.dataframe(filtered_table)
        
@@ -283,11 +279,8 @@ def visualize_data(data):
     # Define Streamlit app
     st.title('Exploratory Data Analysis')
     
-    
     data = data.drop(columns=['Unnamed: 0'])
-    
-    
-    
+       
     # Add a horizontal line to separate attribute summaries
     st.write('---')
     st.subheader('Summary Statistics for Each Attribute')
@@ -325,9 +318,6 @@ def visualize_data(data):
 
                 st.write(f"Number of Unique Entries: {len(unique_values)}")
                 st.dataframe(unique_values_df, height=400,width=800)
-                
-               
-                
                  
                 if sunmarry_df[column].dtype == 'datetime64[ns]':
                     # Handle Date columns differently                        
@@ -349,7 +339,6 @@ def visualize_data(data):
     
     # Add a horizontal line to separate attribute summaries
     st.write('---') 
-    
     
     
     # Dropdown to select the option
@@ -1198,13 +1187,6 @@ def load_tab3():
         df = import_data_bi_weekly()
         
         modelling(df)
-        
-        
-        
-        
-        
-    
-        
         
         
 # Create a container for the tab row
